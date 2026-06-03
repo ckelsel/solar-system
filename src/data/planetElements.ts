@@ -1,0 +1,188 @@
+export const SUN_MASS_KG = 1.98847e30;
+export const SUN_RADIUS_KM = 696_340;
+
+export interface PlanetElements {
+  name: string;
+  radiusKm: number;
+  massKg: number;
+  color: string;
+  semiMajorAxisAU: number;
+  semiMajorAxisRateAUPerCentury: number;
+  eccentricity: number;
+  eccentricityRatePerCentury: number;
+  inclinationDeg: number;
+  inclinationRateDegPerCentury: number;
+  meanLongitudeDeg: number;
+  meanLongitudeRateDegPerCentury: number;
+  longitudeOfPerihelionDeg: number;
+  longitudeOfPerihelionRateDegPerCentury: number;
+  longitudeOfAscendingNodeDeg: number;
+  longitudeOfAscendingNodeRateDegPerCentury: number;
+  rotationPeriodHours: number;
+  axialTiltDeg: number;
+}
+
+// NASA/JPL low-precision mean orbital elements referred to the J2000 ecliptic/equinox.
+// Rates are linear terms per Julian century from J2000.
+export const PLANET_ELEMENTS: PlanetElements[] = [
+  {
+    name: 'Mercury',
+    radiusKm: 2439.7,
+    massKg: 3.3011e23,
+    color: '#b5a28a',
+    semiMajorAxisAU: 0.38709927,
+    semiMajorAxisRateAUPerCentury: 0.00000037,
+    eccentricity: 0.20563593,
+    eccentricityRatePerCentury: 0.00001906,
+    inclinationDeg: 7.00497902,
+    inclinationRateDegPerCentury: -0.00594749,
+    meanLongitudeDeg: 252.2503235,
+    meanLongitudeRateDegPerCentury: 149472.67411175,
+    longitudeOfPerihelionDeg: 77.45779628,
+    longitudeOfPerihelionRateDegPerCentury: 0.16047689,
+    longitudeOfAscendingNodeDeg: 48.33076593,
+    longitudeOfAscendingNodeRateDegPerCentury: -0.12534081,
+    rotationPeriodHours: 1407.6,
+    axialTiltDeg: 0.034,
+  },
+  {
+    name: 'Venus',
+    radiusKm: 6051.8,
+    massKg: 4.8675e24,
+    color: '#d8b27b',
+    semiMajorAxisAU: 0.72333566,
+    semiMajorAxisRateAUPerCentury: 0.0000039,
+    eccentricity: 0.00677672,
+    eccentricityRatePerCentury: -0.00004107,
+    inclinationDeg: 3.39467605,
+    inclinationRateDegPerCentury: -0.0007889,
+    meanLongitudeDeg: 181.9790995,
+    meanLongitudeRateDegPerCentury: 58517.81538729,
+    longitudeOfPerihelionDeg: 131.60246718,
+    longitudeOfPerihelionRateDegPerCentury: 0.00268329,
+    longitudeOfAscendingNodeDeg: 76.67984255,
+    longitudeOfAscendingNodeRateDegPerCentury: -0.27769418,
+    rotationPeriodHours: -5832.5,
+    axialTiltDeg: 177.36,
+  },
+  {
+    name: 'Earth',
+    radiusKm: 6371,
+    massKg: 5.97237e24,
+    color: '#4f9de8',
+    semiMajorAxisAU: 1.00000261,
+    semiMajorAxisRateAUPerCentury: 0.00000562,
+    eccentricity: 0.01671123,
+    eccentricityRatePerCentury: -0.00004392,
+    inclinationDeg: -0.00001531,
+    inclinationRateDegPerCentury: -0.01294668,
+    meanLongitudeDeg: 100.46457166,
+    meanLongitudeRateDegPerCentury: 35999.37244981,
+    longitudeOfPerihelionDeg: 102.93768193,
+    longitudeOfPerihelionRateDegPerCentury: 0.32327364,
+    longitudeOfAscendingNodeDeg: 0,
+    longitudeOfAscendingNodeRateDegPerCentury: 0,
+    rotationPeriodHours: 23.934,
+    axialTiltDeg: 23.44,
+  },
+  {
+    name: 'Mars',
+    radiusKm: 3389.5,
+    massKg: 6.4171e23,
+    color: '#c96a4a',
+    semiMajorAxisAU: 1.52371034,
+    semiMajorAxisRateAUPerCentury: 0.00001847,
+    eccentricity: 0.0933941,
+    eccentricityRatePerCentury: 0.00007882,
+    inclinationDeg: 1.84969142,
+    inclinationRateDegPerCentury: -0.00813131,
+    meanLongitudeDeg: -4.55343205,
+    meanLongitudeRateDegPerCentury: 19140.30268499,
+    longitudeOfPerihelionDeg: -23.94362959,
+    longitudeOfPerihelionRateDegPerCentury: 0.44441088,
+    longitudeOfAscendingNodeDeg: 49.55953891,
+    longitudeOfAscendingNodeRateDegPerCentury: -0.29257343,
+    rotationPeriodHours: 24.623,
+    axialTiltDeg: 25.19,
+  },
+  {
+    name: 'Jupiter',
+    radiusKm: 69911,
+    massKg: 1.8982e27,
+    color: '#d8a76f',
+    semiMajorAxisAU: 5.202887,
+    semiMajorAxisRateAUPerCentury: -0.00011607,
+    eccentricity: 0.04838624,
+    eccentricityRatePerCentury: -0.00013253,
+    inclinationDeg: 1.30439695,
+    inclinationRateDegPerCentury: -0.00183714,
+    meanLongitudeDeg: 34.39644051,
+    meanLongitudeRateDegPerCentury: 3034.74612775,
+    longitudeOfPerihelionDeg: 14.72847983,
+    longitudeOfPerihelionRateDegPerCentury: 0.21252668,
+    longitudeOfAscendingNodeDeg: 100.47390909,
+    longitudeOfAscendingNodeRateDegPerCentury: 0.20469106,
+    rotationPeriodHours: 9.925,
+    axialTiltDeg: 3.13,
+  },
+  {
+    name: 'Saturn',
+    radiusKm: 58232,
+    massKg: 5.6834e26,
+    color: '#d7c48d',
+    semiMajorAxisAU: 9.53667594,
+    semiMajorAxisRateAUPerCentury: -0.0012506,
+    eccentricity: 0.05386179,
+    eccentricityRatePerCentury: -0.00050991,
+    inclinationDeg: 2.48599187,
+    inclinationRateDegPerCentury: 0.00193609,
+    meanLongitudeDeg: 49.95424423,
+    meanLongitudeRateDegPerCentury: 1222.49362201,
+    longitudeOfPerihelionDeg: 92.59887831,
+    longitudeOfPerihelionRateDegPerCentury: -0.41897216,
+    longitudeOfAscendingNodeDeg: 113.66242448,
+    longitudeOfAscendingNodeRateDegPerCentury: -0.28867794,
+    rotationPeriodHours: 10.656,
+    axialTiltDeg: 26.73,
+  },
+  {
+    name: 'Uranus',
+    radiusKm: 25362,
+    massKg: 8.681e25,
+    color: '#8ad6df',
+    semiMajorAxisAU: 19.18916464,
+    semiMajorAxisRateAUPerCentury: -0.00196176,
+    eccentricity: 0.04725744,
+    eccentricityRatePerCentury: -0.00004397,
+    inclinationDeg: 0.77263783,
+    inclinationRateDegPerCentury: -0.00242939,
+    meanLongitudeDeg: 313.23810451,
+    meanLongitudeRateDegPerCentury: 428.48202785,
+    longitudeOfPerihelionDeg: 170.9542763,
+    longitudeOfPerihelionRateDegPerCentury: 0.40805281,
+    longitudeOfAscendingNodeDeg: 74.01692503,
+    longitudeOfAscendingNodeRateDegPerCentury: 0.04240589,
+    rotationPeriodHours: -17.24,
+    axialTiltDeg: 97.77,
+  },
+  {
+    name: 'Neptune',
+    radiusKm: 24622,
+    massKg: 1.02413e26,
+    color: '#4c70d9',
+    semiMajorAxisAU: 30.06992276,
+    semiMajorAxisRateAUPerCentury: 0.00026291,
+    eccentricity: 0.00859048,
+    eccentricityRatePerCentury: 0.00005105,
+    inclinationDeg: 1.77004347,
+    inclinationRateDegPerCentury: 0.00035372,
+    meanLongitudeDeg: -55.12002969,
+    meanLongitudeRateDegPerCentury: 218.45945325,
+    longitudeOfPerihelionDeg: 44.96476227,
+    longitudeOfPerihelionRateDegPerCentury: -0.32241464,
+    longitudeOfAscendingNodeDeg: 131.78422574,
+    longitudeOfAscendingNodeRateDegPerCentury: -0.00508664,
+    rotationPeriodHours: 16.11,
+    axialTiltDeg: 28.32,
+  },
+];

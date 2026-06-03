@@ -1,0 +1,425 @@
+:root {
+  color-scheme: dark;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #05070b;
+  color: #e9eef5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 1px solid #39414b;
+  border-radius: 8px;
+  background: #141a22;
+  color: #e9eef5;
+  min-height: 34px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: #6f879c;
+  background: #1b2530;
+}
+
+button.active {
+  border-color: #f3be58;
+  background: #312716;
+  color: #ffe0a3;
+}
+
+.appShell {
+  position: relative;
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  width: 100vw;
+  height: 100vh;
+  background:
+    radial-gradient(circle at 78% 20%, rgba(255, 196, 87, 0.08), transparent 34%),
+    #05070b;
+}
+
+.controlPanel {
+  z-index: 5;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid #252c35;
+  background: rgba(9, 12, 16, 0.94);
+  padding: 18px;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #252c35;
+}
+
+.brandRow svg {
+  width: 34px;
+  height: 34px;
+  color: #ffd16b;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 21px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.brandRow p,
+.note {
+  margin-top: 4px;
+  color: #aeb7c2;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.controlPanel section {
+  padding: 16px 0;
+  border-bottom: 1px solid #252c35;
+}
+
+.controlPanel h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: #f4f7fb;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.controlPanel h2 svg {
+  width: 17px;
+  height: 17px;
+  color: #72d0ff;
+}
+
+.field {
+  width: 100%;
+  height: 36px;
+  border: 1px solid #39414b;
+  border-radius: 8px;
+  background: #0d1218;
+  color: #e9eef5;
+  padding: 0 10px;
+}
+
+.buttonGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.yearJumpGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.yearJumpGrid button {
+  min-height: 30px;
+  padding: 0 4px;
+  font-size: 12px;
+}
+
+.buttonGrid button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.buttonGrid svg {
+  width: 15px;
+  height: 15px;
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.modeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.modeOptions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.segmented button,
+.modeGrid button {
+  padding: 0 6px;
+  font-size: 12px;
+}
+
+.toggleGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 10px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  color: #d6dde6;
+  font-size: 13px;
+}
+
+.toggle input {
+  width: 16px;
+  height: 16px;
+  accent-color: #f3be58;
+  flex: 0 0 auto;
+}
+
+.toggle span {
+  min-width: 0;
+}
+
+.languageControl {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-top: 12px;
+  color: #d6dde6;
+  font-size: 13px;
+}
+
+.languageControl > span {
+  color: #aeb7c2;
+}
+
+.compactSegmented {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.sliderLabel {
+  display: grid;
+  gap: 7px;
+  margin-top: 10px;
+  color: #d6dde6;
+  font-size: 13px;
+}
+
+.sliderLabel input {
+  width: 100%;
+  accent-color: #f3be58;
+}
+
+.sceneWrap {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+}
+
+.sceneMount {
+  width: 100%;
+  height: 100%;
+}
+
+.sceneMount canvas {
+  display: block;
+}
+
+.labelLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+}
+
+.spaceLabel {
+  position: relative;
+  max-width: min(360px, 46vw);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  background: rgba(8, 11, 15, 0.72);
+  color: #f2f7ff;
+  padding: 3px 7px;
+  font-size: 11px;
+  line-height: 1.25;
+  text-shadow: 0 1px 6px #000;
+  white-space: nowrap;
+}
+
+.bodyLabel {
+  cursor: help;
+}
+
+.bodyTooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  z-index: 20;
+  display: none;
+  width: max-content;
+  min-width: 190px;
+  max-width: 260px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  background: rgba(5, 8, 12, 0.96);
+  color: #f5f8fc;
+  padding: 8px 9px;
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: left;
+  white-space: normal;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.42);
+}
+
+.bodyLabel:hover .bodyTooltip {
+  display: block;
+}
+
+.sunLabel {
+  border-color: rgba(255, 210, 112, 0.45);
+  color: #ffe3a3;
+}
+
+.baryLabel {
+  border-color: rgba(95, 240, 189, 0.48);
+  color: #a9f8dc;
+}
+
+.lagrangeLabel {
+  border-color: rgba(246, 226, 127, 0.5);
+  color: #fff0a8;
+}
+
+.jwstLabel {
+  border-color: rgba(158, 199, 255, 0.58);
+  color: #cfe0ff;
+}
+
+.galacticLabel {
+  border-color: rgba(210, 218, 255, 0.45);
+  color: #eef2ff;
+}
+
+.trojanLabel {
+  border-color: rgba(255, 188, 88, 0.48);
+  color: #ffd08a;
+}
+
+.guideLabel {
+  border-color: rgba(255, 255, 255, 0.36);
+  color: #ffffff;
+}
+
+.gravityLabel {
+  border-color: rgba(157, 191, 255, 0.5);
+  color: #dbe7ff;
+}
+
+.scaleBadge {
+  position: absolute;
+  left: 18px;
+  bottom: 154px;
+  max-width: min(640px, calc(100% - 36px));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(8, 11, 15, 0.74);
+  color: #d7e2ed;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+.truthPanel {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 4;
+  width: min(700px, calc(100vw - 390px));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(8, 11, 15, 0.82);
+  padding: 12px 14px;
+  color: #cbd5df;
+}
+
+.truthPanel h2 {
+  margin-bottom: 8px;
+  color: #f6f9fc;
+  font-size: 14px;
+}
+
+.truthPanel p {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+@media (max-width: 860px) {
+  body {
+    overflow: auto;
+  }
+
+  .appShell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 70vh;
+    min-height: 100vh;
+    height: auto;
+  }
+
+  .controlPanel {
+    height: auto;
+    max-height: none;
+    border-right: 0;
+    border-bottom: 1px solid #252c35;
+  }
+
+  .sceneWrap {
+    min-height: 70vh;
+  }
+
+  .truthPanel {
+    position: static;
+    width: auto;
+    margin: 12px;
+  }
+
+  .scaleBadge {
+    bottom: 12px;
+  }
+}
