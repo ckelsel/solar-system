@@ -27,6 +27,8 @@ const GALACTIC_SUN_SPEED_AU_PER_DAY = (GALACTIC_SUN_SPEED_KM_PER_S * 86_400) / A
 const SIZE_COMPARISON_MIN_RADIUS_UNITS = 1.15;
 const SIZE_COMPARISON_SUN_RADIUS_UNITS = 150;
 const SIZE_COMPARISON_FULL_SUN_RADIUS_UNITS = 72;
+const EARTH_MIN_VISIBLE_RADIUS_UNITS = 1.05;
+const MOON_MIN_VISIBLE_RADIUS_UNITS = 0.5;
 
 interface SolarSystemSceneProps {
   cameraView: CameraView;
@@ -206,6 +208,24 @@ function createAxis(radius: number, axialTiltDeg: number) {
   const geometry = new THREE.BufferGeometry().setFromPoints(points);
   const material = new THREE.LineBasicMaterial({ color: '#e8f4ff', transparent: true, opacity: 0.72 });
   return new THREE.Line(geometry, material);
+}
+
+function positionBodyLabel(label: CSS2DObject, radius: number) {
+  label.center.set(0, 0.5);
+  label.position.set(radius * 1.45 + 0.8, 0, radius * 1.2 + 0.8);
+}
+
+function createVisibilityHalo(radius: number, color: string) {
+  return new THREE.Mesh(
+    new THREE.SphereGeometry(radius * 1.45, 24, 16),
+    new THREE.MeshBasicMaterial({
+      color,
+      transparent: true,
+      opacity: 0.12,
+      depthWrite: false,
+      side: THREE.BackSide,
+    }),
+  );
 }
 
 function createGravityEquipotentialShells(sunPosition: THREE.Vector3, size: number, language: LabelLanguage) {
@@ -768,12 +788,16 @@ function SolarSystemScene({ cameraView, currentDate, displayMode, settings }: So
       planetGroup.position.copy(position);
 
       const trueSizeComparisonRadius = (elements.radiusKm / SUN_RADIUS_KM) * sizeComparisonSunRadius;
+      const enhancedPlanetRadius = Math.max(
+        (elements.radiusKm / SUN_RADIUS_KM) * sunRadius * (settings.planetSizeScale / 300),
+        elements.name === 'Earth' ? EARTH_MIN_VISIBLE_RADIUS_UNITS : 0.38,
+      );
       const visualRadius =
         displayMode === 'sizeComparison'
           ? Math.max(trueSizeComparisonRadius, SIZE_COMPARISON_MIN_RADIUS_UNITS)
           : displayMode === 'trueScale'
             ? Math.max((elements.radiusKm / AU_KM) * (isGalacticFrame ? galacticUnitsPerAU : REAL_DISTANCE_UNITS_PER_AU), 0.0005)
-            : Math.max((elements.radiusKm / SUN_RADIUS_KM) * sunRadius * (settings.planetSizeScale / 300), 0.38);
+            : enhancedPlanetRadius;
 
       const material =
         displayMode === 'sizeComparison'
@@ -786,6 +810,9 @@ function SolarSystemScene({ cameraView, currentDate, displayMode, settings }: So
             });
       const planet = new THREE.Mesh(new THREE.SphereGeometry(visualRadius, 32, 20), material);
       planetGroup.add(planet);
+      if (elements.name === 'Earth' && displayMode !== 'trueScale' && displayMode !== 'sizeComparison') {
+        planetGroup.add(createVisibilityHalo(visualRadius, elements.visibleColor));
+      }
       spinBodiesRef.current.push({ mesh: planet, rotationPeriodHours: elements.rotationPeriodHours });
 
       if (elements.name === 'Saturn') {
@@ -812,7 +839,11 @@ function SolarSystemScene({ cameraView, currentDate, displayMode, settings }: So
           displayMode === 'sizeComparison'
             ? createBodyLabel(displayName, elements.radiusKm, trueSizeComparisonRadius, visualRadius, settings.labelLanguage)
             : createLabel(displayName);
-        label.position.set(0, 0, visualRadius * 1.85 + 0.8);
+        if (displayMode === 'sizeComparison') {
+          label.position.set(0, 0, visualRadius * 1.85 + 0.8);
+        } else {
+          positionBodyLabel(label, visualRadius);
+        }
         planetGroup.add(label);
       }
 
@@ -852,24 +883,25 @@ function SolarSystemScene({ cameraView, currentDate, displayMode, settings }: So
           ),
         );
 
+        const moonRadius =
+          displayMode === 'trueScale'
+            ? Math.max((1737.4 / AU_KM) * (isGalacticFrame ? galacticUnitsPerAU : REAL_DISTANCE_UNITS_PER_AU), 0.001)
+            : Math.max(visualRadius * 0.27, MOON_MIN_VISIBLE_RADIUS_UNITS);
         const moon = new THREE.Mesh(
-          new THREE.SphereGeometry(
-            displayMode === 'trueScale'
-              ? Math.max((1737.4 / AU_KM) * (isGalacticFrame ? galacticUnitsPerAU : REAL_DISTANCE_UNITS_PER_AU), 0.001)
-              : Math.max(visualRadius * 0.27, 0.16),
-            18,
-            12,
-          ),
+          new THREE.SphereGeometry(moonRadius, 18, 12),
           new THREE.MeshStandardMaterial({ color: '#b8bec7', roughness: 0.85 }),
         );
         moon.position.copy(position).add(moonOffset);
+        if (displayMode !== 'trueScale') {
+          moon.add(createVisibilityHalo(moonRadius, '#d9dde3'));
+        }
         if (settings.showLabels) {
           const label = createLabel(
             displayMode === 'trueScale'
               ? bodyLabel('Moon', settings.labelLanguage)
               : textLabel('Moon (orbit distance enhanced)', '月球（轨道距离已增强）', settings.labelLanguage),
           );
-          label.position.set(0, 0, visualRadius * 0.8);
+          positionBodyLabel(label, moonRadius);
           moon.add(label);
         }
         group.add(moon);
