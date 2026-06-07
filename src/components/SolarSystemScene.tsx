@@ -775,12 +775,15 @@ function SolarSystemScene({ cameraView, currentDate, displayMode, settings }: So
             ? Math.max((elements.radiusKm / AU_KM) * (isGalacticFrame ? galacticUnitsPerAU : REAL_DISTANCE_UNITS_PER_AU), 0.0005)
             : Math.max((elements.radiusKm / SUN_RADIUS_KM) * sunRadius * (settings.planetSizeScale / 300), 0.38);
 
-      const material = new THREE.MeshStandardMaterial({
-        color: elements.color,
-        roughness: 0.72,
-        metalness: 0.02,
-        emissive: new THREE.Color(elements.color).multiplyScalar(0.025),
-      });
+      const material =
+        displayMode === 'sizeComparison'
+          ? new THREE.MeshBasicMaterial({ color: elements.visibleColor })
+          : new THREE.MeshStandardMaterial({
+              color: elements.color,
+              roughness: 0.72,
+              metalness: 0.02,
+              emissive: new THREE.Color(elements.color).multiplyScalar(0.025),
+            });
       const planet = new THREE.Mesh(new THREE.SphereGeometry(visualRadius, 32, 20), material);
       planetGroup.add(planet);
       spinBodiesRef.current.push({ mesh: planet, rotationPeriodHours: elements.rotationPeriodHours });
@@ -789,9 +792,9 @@ function SolarSystemScene({ cameraView, currentDate, displayMode, settings }: So
         const ring = new THREE.Mesh(
           new THREE.RingGeometry(visualRadius * 1.35, visualRadius * 2.25, 72),
           new THREE.MeshBasicMaterial({
-            color: '#d8c995',
+            color: displayMode === 'sizeComparison' ? '#c9b77d' : '#d8c995',
             transparent: true,
-            opacity: 0.58,
+            opacity: displayMode === 'sizeComparison' ? 0.82 : 0.58,
             side: THREE.DoubleSide,
           }),
         );

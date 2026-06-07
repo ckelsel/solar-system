@@ -6,6 +6,7 @@ export interface PlanetElements {
   radiusKm: number;
   massKg: number;
   color: string;
+  visibleColor: string;
   semiMajorAxisAU: number;
   semiMajorAxisRateAUPerCentury: number;
   eccentricity: number;
@@ -30,6 +31,7 @@ export const PLANET_ELEMENTS: PlanetElements[] = [
     radiusKm: 2439.7,
     massKg: 3.3011e23,
     color: '#b5a28a',
+    visibleColor: '#9b9289',
     semiMajorAxisAU: 0.38709927,
     semiMajorAxisRateAUPerCentury: 0.00000037,
     eccentricity: 0.20563593,
@@ -50,6 +52,7 @@ export const PLANET_ELEMENTS: PlanetElements[] = [
     radiusKm: 6051.8,
     massKg: 4.8675e24,
     color: '#d8b27b',
+    visibleColor: '#e8cda2',
     semiMajorAxisAU: 0.72333566,
     semiMajorAxisRateAUPerCentury: 0.0000039,
     eccentricity: 0.00677672,
@@ -70,6 +73,7 @@ export const PLANET_ELEMENTS: PlanetElements[] = [
     radiusKm: 6371,
     massKg: 5.97237e24,
     color: '#4f9de8',
+    visibleColor: '#3979b9',
     semiMajorAxisAU: 1.00000261,
     semiMajorAxisRateAUPerCentury: 0.00000562,
     eccentricity: 0.01671123,
@@ -90,6 +94,7 @@ export const PLANET_ELEMENTS: PlanetElements[] = [
     radiusKm: 3389.5,
     massKg: 6.4171e23,
     color: '#c96a4a',
+    visibleColor: '#b85f43',
     semiMajorAxisAU: 1.52371034,
     semiMajorAxisRateAUPerCentury: 0.00001847,
     eccentricity: 0.0933941,
@@ -110,6 +115,7 @@ export const PLANET_ELEMENTS: PlanetElements[] = [
     radiusKm: 69911,
     massKg: 1.8982e27,
     color: '#d8a76f',
+    visibleColor: '#c8a47d',
     semiMajorAxisAU: 5.202887,
     semiMajorAxisRateAUPerCentury: -0.00011607,
     eccentricity: 0.04838624,
@@ -130,6 +136,7 @@ export const PLANET_ELEMENTS: PlanetElements[] = [
     radiusKm: 58232,
     massKg: 5.6834e26,
     color: '#d7c48d',
+    visibleColor: '#d8c591',
     semiMajorAxisAU: 9.53667594,
     semiMajorAxisRateAUPerCentury: -0.0012506,
     eccentricity: 0.05386179,
@@ -150,6 +157,7 @@ export const PLANET_ELEMENTS: PlanetElements[] = [
     radiusKm: 25362,
     massKg: 8.681e25,
     color: '#8ad6df',
+    visibleColor: '#9ed9df',
     semiMajorAxisAU: 19.18916464,
     semiMajorAxisRateAUPerCentury: -0.00196176,
     eccentricity: 0.04725744,
@@ -170,6 +178,7 @@ export const PLANET_ELEMENTS: PlanetElements[] = [
     radiusKm: 24622,
     massKg: 1.02413e26,
     color: '#4c70d9',
+    visibleColor: '#4169a9',
     semiMajorAxisAU: 30.06992276,
     semiMajorAxisRateAUPerCentury: 0.00026291,
     eccentricity: 0.00859048,
